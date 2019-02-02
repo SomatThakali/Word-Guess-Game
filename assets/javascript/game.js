@@ -19,46 +19,49 @@ var guessedLetters  = []; // This will store the letters that user already guess
 var remainingLetters = words.length;
 var guessingWordText;
 
+document.getElementById("underscore-text").innerText = guessingArray;
 
 
-function display(){
+function reset(){
+    
     for (var i = 0; i < randomWord.length; i++) {
         guessingArray[i] = ("_")
     }
-    document.getElementById("underscore-text").innerText = guessingArray.join(" ");
-    // guessingWordText = guessingArray.join(" ");
-    // document.getElementById("currentWord-text").innerText = guessingWordText;
-    
-   
-} // its working 
-
-document.getElementById("remainingGuesses-text").innerText= remainingGuesses;
-
-function  checkGuess(alphabet){
-var tem = [];
-    
-    for (var i = 0; i < randomWord.length; i++) {
-        if (randomWord[i] === alphabet) {
-            guessingArray[i] = alphabet;
-            //  alphabet = tem[i];
-            //  temp[i] = guessingArray[i];
-            // guessingWordText+=guessingArray[i];   
-        }
-    else remainingGuesses--;
- }
- 
 }
+reset();
 
+
+function display(){
+   
+    document.getElementById("underscore-text").innerText = guessingArray.join(" ");
+   
+} // End of display function
+
+
+
+function  checkGuess(letter){
+    
+  if(randomWord.includes(letter)){
+    for(var i = 0; i < randomWord.length; i++){
+           if(randomWord[i] === letter){
+             guessingArray[i] = letter;
+           } 
+    }
+  }else{
+    remainingGuesses--;
+  }
+}// End of checkGuess Function
 
 
 // Functions that user will guess alphabet and will store in guessedLetters Array
-function askGuess(alphabet){
-    if(remainingGuesses > 0){
-        if (guessedLetters.indexOf(alphabet) === -1) {
-            guessedLetters.push(alphabet);
-            checkGuess(alphabet);
+function askGuess(letter){
+   
+    // if(remainingGuesses > 0){
+        if (guessedLetters.indexOf(letter) === -1) {
+            guessedLetters.push(letter);
+            checkGuess(letter);
         }
-    }
+    // }
     display();
     document.getElementById("letterGuessed-text").innerText = guessedLetters;  
 } // is working
@@ -67,12 +70,12 @@ function askGuess(alphabet){
 
 document.onkeydown = function(event) {
     console.log('remainingGuesses = ', remainingGuesses);
-    console.log('remainingGuesses = ', remainingGuesses);
-    console.log('remainingGuesses = ', remainingGuesses);
-    console.log('remainingGuesses = ', remainingGuesses);
+    
 
     if(event.keyCode >= 65 && event.keyCode <= 90) {
+        
         askGuess(event.key.toLowerCase());
+        document.getElementById("remainingGuesses-text").innerText= remainingGuesses;
     }
         
         
