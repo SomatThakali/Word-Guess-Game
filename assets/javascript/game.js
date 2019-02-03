@@ -1,5 +1,4 @@
 
-
 var words =   // Library or an array of singer names
 [
     "rihana",
@@ -7,79 +6,103 @@ var words =   // Library or an array of singer names
     "adam"
 ];
 
-// This generates the random word from the above array
-var randomWord = words[Math.floor(Math.random() * words.length)]; 
-console.log(randomWord);
+var win = 0;
+var loss = 0;
+var guessesLeft = 7;
+var underScoreArray = [];
+var userGuesses = [];
+var wrongGuesses = [];
+var randomWord;
+var winCounter = 0;
+
+/* .............................................. Start Game ..........................................................*/
 
 
-var wins = 0;
-var remainingGuesses = 15;
-var guessingArray = []; // Empyt now but when the user gueses == current word then the letters will be stored
-var guessedLetters  = []; // This will store the letters that user already guessed
-var remainingLetters = words.length;
-var guessingWordText;
+function startGame(){
 
-document.getElementById("underscore-text").innerText = guessingArray;
+    /*..................................................RESET................................................................*/
+    underScoreArray = [];
+    // wins = 0;
+    guessesLeft = 7;
+    wrongGuesses = [];
 
+    document.getElementById('remainingGuesses-text').innerHTML = guessesLeft;
 
-function reset(){
-    
-    for (var i = 0; i < randomWord.length; i++) {
-        guessingArray[i] = ("_")
+    randomWord = words[Math.floor(Math.random() * words.length)]; // This is the random word
+    console.log('Random Word -' + ' ' + randomWord);
+    for (var i = 0; i < randomWord.length; i++){
+        underScoreArray.push('_');
     }
+    document.getElementById('underscore-text').innerHTML = underScoreArray.join(' ');
+
+    
+
 }
-reset();
 
 
-function display(){
-   
-    document.getElementById("underscore-text").innerText = guessingArray.join(" ");
-   
-} // End of display function
-
-
-
-function  checkGuess(letter){
+/* .......................... Check if the user guess is same as the letter in random word ..........................*/
+function  checkGuesses(){
     
-  if(randomWord.includes(letter)){
-    for(var i = 0; i < randomWord.length; i++){
-           if(randomWord[i] === letter){
-             guessingArray[i] = letter;
-           } 
-    }
-  }else{
-    remainingGuesses--;
-  }
-}// End of checkGuess Function
-
-
-// Functions that user will guess alphabet and will store in guessedLetters Array
-function askGuess(letter){
-   
-    // if(remainingGuesses > 0){
-        if (guessedLetters.indexOf(letter) === -1) {
-            guessedLetters.push(letter);
-            checkGuess(letter);
+    if(randomWord.indexOf(userGuesses) > -1){
+        for(var i = 0; i < randomWord.length; i++){
+                if(randomWord[i] === userGuesses){
+                underScoreArray[i] = userGuesses;
+                console.log(underScoreArray);
+                document.getElementById('underscore-text').innerHTML =underScoreArray.join(' ');
+                console.log('DEBUG win Counter -- ' + winCounter);
+               
+                }
         }
-    // }
-    display();
-    document.getElementById("letterGuessed-text").innerText = guessedLetters;  
-} // is working
-
-
-
-document.onkeydown = function(event) {
-    console.log('remainingGuesses = ', remainingGuesses);
-    
-
-    if(event.keyCode >= 65 && event.keyCode <= 90) {
-        
-        askGuess(event.key.toLowerCase());
-        document.getElementById("remainingGuesses-text").innerText= remainingGuesses;
     }
+    else { 
+        guessesLeft--; 
+        wrongGuesses.push(userGuesses);
+       
+        console.log('DEBUG Guess left ' + guessesLeft);
+        console.log('DEBUG Wrong guesses ' + wrongGuesses);
+        // checkWinLoss();
+    }
+    
+   
+    document.getElementById('remainingGuesses-text').innerHTML = guessesLeft;
+    document.getElementById('letterGuessed-text').innerHTML = wrongGuesses;
+        
+}
+
+/* .......................... Check win or loss ..........................*/
+
+function checkWinLoss(){
+    
+    if(underScoreArray.indexOf("_") === -1){
+        win++;
+        document.getElementById('wins-text').innerHTML = win;
+        console.log('wins -- ' + win);
+        startGame();
+    }
+    else if (guessesLeft==0){
+      
+        loss++; 
+        console.log('loss-- ' + loss);
+        document.getElementById('loss-text').innerHTML = loss;
+        startGame();
+    }
+
+}
+
+
+document.onkeyup = function(event){
+    
+    if(event.keyCode >= 65 && event.keyCode <= 90) {  
+        
+            userGuesses = event.key.toLowerCase(); 
+            checkGuesses();
+            checkWinLoss();
+        
+       
         
         
-    
-    
-    
+    }
 };
+
+
+startGame();
