@@ -55,15 +55,18 @@ function  checkGuesses(){
         }
     }
     else { 
-        guessesLeft--; 
-        wrongGuesses.push(userGuesses);
-       
+
+         /* This will decrement guessLeft only if the character is unique */
+        if (wrongGuesses.indexOf(userGuesses) === -1){ 
+            guessesLeft--; 
+            wrongGuesses.push(userGuesses);
+            
+        }
         console.log('DEBUG Guess left ' + guessesLeft);
         console.log('DEBUG Wrong guesses ' + wrongGuesses);
-        // checkWinLoss();
+
     }
     
-   
     document.getElementById('remainingGuesses-text').innerHTML = guessesLeft;
     document.getElementById('letterGuessed-text').innerHTML = wrongGuesses;
         
