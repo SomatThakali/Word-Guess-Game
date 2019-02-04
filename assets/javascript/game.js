@@ -8,13 +8,13 @@ var words =   // Library or an array of singer names
 
 var win = 0;
 var loss = 0;
-const maxTries = 9;         /* This is the maximum number of tries */
-var guessesLeft = 9;
+const maxTries = 8;         /* This is the maximum number of tries */
+var guessesLeft = 8;
 var underScoreArray = [];   /* Will store the under scores */
 var userGuesses = [];       /* Will store the user Guesses */
 var wrongGuesses = [];      /* Will store the wrong Guesses */
 var randomWord;             /* This is the random word generated */
-
+var hasFinished = true;
 
 var wrongLetter = new Audio('assets/sounds/error.mp3');  /* This audio will play if the user enters wrong letter */
 var rightLetter = new Audio('assets/sounds/right.mp3');  /* This audio will play if the user enters right letter */
@@ -24,14 +24,16 @@ var rightLetter = new Audio('assets/sounds/right.mp3');  /* This audio will play
 function startGame(){
 
 /*....................................................RESET................................................................*/
+     
     underScoreArray = [];
-    guessesLeft = 9;
+    guessesLeft = 8;
     wrongGuesses = [];
 
     document.getElementById('remainingGuesses-text').innerHTML = guessesLeft;
     document.getElementById("hangmanImage").src = "";
     randomWord = words[Math.floor(Math.random() * words.length)]; // This is the random word
     console.log('DEBUG Random Word -' + ' ' + randomWord);
+    
     for (var i = 0; i < randomWord.length; i++){
         underScoreArray.push('_');
     }
@@ -39,10 +41,21 @@ function startGame(){
 
     document.getElementById("win-message").style.cssText= "display: none";
     document.getElementById("loss-message").style.cssText= "display: none";
-
+    
+    hasFinished=false;  
+    
 }
 
+function display(){
+   
+        document.getElementById('remainingGuesses-text').innerHTML = guessesLeft;
+        document.getElementById("hangmanImage").src = "";
+        document.getElementById("win-message").style.cssText= "display: none";
+        document.getElementById("loss-message").style.cssText= "display: none";    
+    
+    }
 
+    display();
 /* .......................... Check if the user guess is same as the letter in random word ..........................*/
 function  checkGuesses(){
     
@@ -103,6 +116,7 @@ function checkWinLoss(){
         document.getElementById('loss-text').innerHTML = loss;
         hasFinished = true;
         document.getElementById("loss-message").style.cssText= "display: block";
+        document.getElementById("hangmanImage").style.cssText= "display: none";
     }
 
 }
@@ -124,7 +138,7 @@ function checkWinLoss(){
     
 //     }
 // }
-var hasFinished = true;
+
 document.onkeyup = function(event){
     if(hasFinished) {
         startGame();
@@ -141,4 +155,4 @@ document.onkeyup = function(event){
 };
 
 
-startGame();
+// startGame();
