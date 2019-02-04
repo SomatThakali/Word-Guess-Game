@@ -12,3 +12,7 @@ h1, h3, h5, h6{
 #hangmanImage{
     padding-top: 20px;
 }
+
+#letterGuessed-text{
+    color: red;
+}

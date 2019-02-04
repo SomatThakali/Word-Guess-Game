@@ -18,7 +18,8 @@ var hasFinished = true;
 
 var wrongLetter = new Audio('assets/sounds/error.mp3');  /* This audio will play if the user enters wrong letter */
 var rightLetter = new Audio('assets/sounds/right.mp3');  /* This audio will play if the user enters right letter */
-
+var winner = new Audio('assets/sounds/win.mp3')
+var looser = new Audio('assets/sounds/looser.wav')
 
 /* ......................................... Start Game  Function..........................................................*/
 function startGame(){
@@ -46,16 +47,19 @@ function startGame(){
     
 }
 
+
+/*....................................................RESET................................................................*/
 function display(){
    
-        document.getElementById('remainingGuesses-text').innerHTML = guessesLeft;
-        document.getElementById("hangmanImage").src = "";
+       // will display only if the player wins ot loose the game. Other time it will not display
         document.getElementById("win-message").style.cssText= "display: none";
         document.getElementById("loss-message").style.cssText= "display: none";    
     
     }
 
     display();
+
+
 /* .......................... Check if the user guess is same as the letter in random word ..........................*/
 function  checkGuesses(){
     
@@ -96,27 +100,26 @@ function  checkGuesses(){
 
 
 /* .......................... Check win or loss ..........................*/
-
 function checkWinLoss(){
     
     if(underScoreArray.indexOf("_") === -1){
         win++;
         document.getElementById('wins-text').innerHTML = win;
         console.log('DEBUFG wins ==  ' + win);
-        // playMusic();
-        
+        winner.play();
         hasFinished = true;
         document.getElementById("win-message").style.cssText= "display: block";
-        document.getElementById("hangmanImage").style.cssText= "display: none";
+        
 
     }
     else if (guessesLeft==0){
         loss++; 
         console.log('DEBUG loss == ' + loss);
         document.getElementById('loss-text').innerHTML = loss;
+        looser.play();
         hasFinished = true;
         document.getElementById("loss-message").style.cssText= "display: block";
-        document.getElementById("hangmanImage").style.cssText= "display: none";
+        
     }
 
 }
@@ -129,15 +132,6 @@ function checkWinLoss(){
 }
 
 
-// var drakeGuess = new Audio('assets/sounds/drake.mp3');
-// function playMusic(){
-//     for (var i = 0; i < randomWord.length; i++){
-//         if(underScoreArray[i] == randomWord[i]){
-//             drakeGuess.play();
-//     }
-    
-//     }
-// }
 
 document.onkeyup = function(event){
     if(hasFinished) {
@@ -154,5 +148,3 @@ document.onkeyup = function(event){
 }
 };
 
-
-// startGame();
