@@ -37,6 +37,9 @@ function startGame(){
     }
     document.getElementById('underscore-text').innerHTML = underScoreArray.join(' ');
 
+    document.getElementById("win-message").style.cssText= "display: none";
+    document.getElementById("loss-message").style.cssText= "display: none";
+
 }
 
 
@@ -88,13 +91,18 @@ function checkWinLoss(){
         document.getElementById('wins-text').innerHTML = win;
         console.log('DEBUFG wins ==  ' + win);
         // playMusic();
-        startGame();
+        
+        hasFinished = true;
+        document.getElementById("win-message").style.cssText= "display: block";
+        document.getElementById("hangmanImage").style.cssText= "display: none";
+
     }
     else if (guessesLeft==0){
         loss++; 
         console.log('DEBUG loss == ' + loss);
         document.getElementById('loss-text').innerHTML = loss;
-        startGame(); 
+        hasFinished = true;
+        document.getElementById("loss-message").style.cssText= "display: block";
     }
 
 }
@@ -116,9 +124,12 @@ function checkWinLoss(){
     
 //     }
 // }
-
+var hasFinished = true;
 document.onkeyup = function(event){
-    
+    if(hasFinished) {
+        startGame();
+        hasFinished = false;
+    } else {
     if(event.keyCode >= 65 && event.keyCode <= 90) {  
         
             userGuesses = event.key.toLowerCase(); 
@@ -126,6 +137,7 @@ document.onkeyup = function(event){
             checkWinLoss();   
         
     }
+}
 };
 
 

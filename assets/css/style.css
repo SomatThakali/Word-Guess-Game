@@ -3,3 +3,12 @@ h1, h3, h5, h6{
 }
 
 
+#win-message, #loss-message{
+  padding-top: 30px;
+  color: green;  
+}
+
+
+#hangmanImage{
+    padding-top: 20px;
+}
