@@ -8,16 +8,16 @@ var words =   // Library or an array of singer names
 
 var win = 0;
 var loss = 0;
-const maxTries = 9;
+const maxTries = 9;         /* This is the maximum number of tries */
 var guessesLeft = 9;
-var underScoreArray = [];
-var userGuesses = [];
-var wrongGuesses = [];
-var randomWord;
+var underScoreArray = [];   /* Will store the under scores */
+var userGuesses = [];       /* Will store the user Guesses */
+var wrongGuesses = [];      /* Will store the wrong Guesses */
+var randomWord;             /* This is the random word generated */
 
 
-var wrongLetter=new Audio('assets/sounds/error.mp3');
-var rightLetter=new Audio('assets/sounds/right.mp3');
+var wrongLetter = new Audio('assets/sounds/error.mp3');  /* This audio will play if the user enters wrong letter */
+var rightLetter = new Audio('assets/sounds/right.mp3');  /* This audio will play if the user enters right letter */
 
 
 /* ......................................... Start Game  Function..........................................................*/
@@ -48,6 +48,7 @@ function  checkGuesses(){
                 if(randomWord[i] === userGuesses){
                 underScoreArray[i] = userGuesses;
                 console.log('DEBUG UNDERSCORE ARRAY-- '+ underScoreArray.join(' '));
+                console.log('DEBUG userGuesses ARRAY-- '+ userGuesses);
                 document.getElementById('underscore-text').innerHTML =underScoreArray.join(' ');
                 rightLetter.play();
                 }
@@ -64,8 +65,8 @@ function  checkGuesses(){
             
         }
         else{
-            alert("This letter is already GUESSED. Enter the other letter.")
             wrongLetter.play();
+            alert("This letter is already GUESSED. Enter the other letter.")    
         }
         console.log('DEBUG Guess left == ' + guessesLeft);
         console.log('DEBUG Wrong guesses ARRAY == ' + wrongGuesses);
@@ -86,15 +87,14 @@ function checkWinLoss(){
         win++;
         document.getElementById('wins-text').innerHTML = win;
         console.log('DEBUFG wins ==  ' + win);
-        wrongGuesses = []; // Clear the wrong guesses array
+        // playMusic();
         startGame();
     }
     else if (guessesLeft==0){
         loss++; 
         console.log('DEBUG loss == ' + loss);
         document.getElementById('loss-text').innerHTML = loss;
-        startGame();
-        wrongGuesses = [];
+        startGame(); 
     }
 
 }
@@ -107,9 +107,13 @@ function checkWinLoss(){
 }
 
 
+// var drakeGuess = new Audio('assets/sounds/drake.mp3');
 // function playMusic(){
-//     if(underScoreArray == "drake"){
-
+//     for (var i = 0; i < randomWord.length; i++){
+//         if(underScoreArray[i] == randomWord[i]){
+//             drakeGuess.play();
+//     }
+    
 //     }
 // }
 
