@@ -8,34 +8,32 @@ var words =   // Library or an array of singer names
 
 var win = 0;
 var loss = 0;
-var guessesLeft = 7;
+const maxTries = 9;
+var guessesLeft = 9;
 var underScoreArray = [];
 var userGuesses = [];
 var wrongGuesses = [];
 var randomWord;
-var winCounter = 0;
-
-/* .............................................. Start Game ..........................................................*/
 
 
+
+
+/* ......................................... Start Game  Function..........................................................*/
 function startGame(){
 
-    /*..................................................RESET................................................................*/
+/*....................................................RESET................................................................*/
     underScoreArray = [];
-    // wins = 0;
-    guessesLeft = 7;
+    guessesLeft = 9;
     wrongGuesses = [];
 
     document.getElementById('remainingGuesses-text').innerHTML = guessesLeft;
-
+    document.getElementById("hangmanImage").src = "";
     randomWord = words[Math.floor(Math.random() * words.length)]; // This is the random word
-    console.log('Random Word -' + ' ' + randomWord);
+    console.log('DEBUG Random Word -' + ' ' + randomWord);
     for (var i = 0; i < randomWord.length; i++){
         underScoreArray.push('_');
     }
     document.getElementById('underscore-text').innerHTML = underScoreArray.join(' ');
-
-    
 
 }
 
@@ -47,23 +45,22 @@ function  checkGuesses(){
         for(var i = 0; i < randomWord.length; i++){
                 if(randomWord[i] === userGuesses){
                 underScoreArray[i] = userGuesses;
-                console.log(underScoreArray);
+                console.log('DEBUG UNDERSCORE ARRAY-- '+ underScoreArray.join(' '));
                 document.getElementById('underscore-text').innerHTML =underScoreArray.join(' ');
-                console.log('DEBUG win Counter -- ' + winCounter);
-               
                 }
         }
     }
     else { 
 
-         /* This will decrement guessLeft only if the character is unique */
+         /* .. This will decrement guessesLeft only if the character is unique .. */
         if (wrongGuesses.indexOf(userGuesses) === -1){ 
             guessesLeft--; 
+            updateHangmanImage();
             wrongGuesses.push(userGuesses);
             
         }
-        console.log('DEBUG Guess left ' + guessesLeft);
-        console.log('DEBUG Wrong guesses ' + wrongGuesses);
+        console.log('DEBUG Guess left == ' + guessesLeft);
+        console.log('DEBUG Wrong guesses ARRAY == ' + wrongGuesses);
 
     }
     
@@ -72,6 +69,7 @@ function  checkGuesses(){
         
 }
 
+
 /* .......................... Check win or loss ..........................*/
 
 function checkWinLoss(){
@@ -79,17 +77,23 @@ function checkWinLoss(){
     if(underScoreArray.indexOf("_") === -1){
         win++;
         document.getElementById('wins-text').innerHTML = win;
-        console.log('wins -- ' + win);
+        console.log('DEBUFG wins ==  ' + win);
         startGame();
     }
     else if (guessesLeft==0){
-      
         loss++; 
-        console.log('loss-- ' + loss);
+        console.log('DEBUG loss == ' + loss);
         document.getElementById('loss-text').innerHTML = loss;
         startGame();
     }
 
+}
+
+
+/* .......................... Update the hangman image ..........................*/
+ function updateHangmanImage() {
+     // this will update the image if the guess is wrong
+    document.getElementById("hangmanImage").src = "assets/images/" + (maxTries-guessesLeft) + ".png";
 }
 
 
@@ -99,10 +103,7 @@ document.onkeyup = function(event){
         
             userGuesses = event.key.toLowerCase(); 
             checkGuesses();
-            checkWinLoss();
-        
-       
-        
+            checkWinLoss();   
         
     }
 };
