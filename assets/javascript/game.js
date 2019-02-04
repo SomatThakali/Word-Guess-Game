@@ -16,6 +16,8 @@ var wrongGuesses = [];
 var randomWord;
 
 
+var wrongLetter=new Audio('assets/sounds/error.mp3');
+var rightLetter=new Audio('assets/sounds/right.mp3');
 
 
 /* ......................................... Start Game  Function..........................................................*/
@@ -47,6 +49,7 @@ function  checkGuesses(){
                 underScoreArray[i] = userGuesses;
                 console.log('DEBUG UNDERSCORE ARRAY-- '+ underScoreArray.join(' '));
                 document.getElementById('underscore-text').innerHTML =underScoreArray.join(' ');
+                rightLetter.play();
                 }
         }
     }
@@ -57,6 +60,7 @@ function  checkGuesses(){
             guessesLeft--; 
             updateHangmanImage();
             wrongGuesses.push(userGuesses);
+            wrongLetter.play();
             
         }
         console.log('DEBUG Guess left == ' + guessesLeft);
@@ -96,6 +100,12 @@ function checkWinLoss(){
     document.getElementById("hangmanImage").src = "assets/images/" + (maxTries-guessesLeft) + ".png";
 }
 
+
+// function playMusic(){
+//     if(underScoreArray == "drake"){
+
+//     }
+// }
 
 document.onkeyup = function(event){
     
