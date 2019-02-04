@@ -63,6 +63,10 @@ function  checkGuesses(){
             wrongLetter.play();
             
         }
+        else{
+            alert("This letter is already GUESSED. Enter the other letter.")
+            wrongLetter.play();
+        }
         console.log('DEBUG Guess left == ' + guessesLeft);
         console.log('DEBUG Wrong guesses ARRAY == ' + wrongGuesses);
 
@@ -82,6 +86,7 @@ function checkWinLoss(){
         win++;
         document.getElementById('wins-text').innerHTML = win;
         console.log('DEBUFG wins ==  ' + win);
+        wrongGuesses = []; // Clear the wrong guesses array
         startGame();
     }
     else if (guessesLeft==0){
@@ -89,6 +94,7 @@ function checkWinLoss(){
         console.log('DEBUG loss == ' + loss);
         document.getElementById('loss-text').innerHTML = loss;
         startGame();
+        wrongGuesses = [];
     }
 
 }
