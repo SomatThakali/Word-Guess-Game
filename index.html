@@ -6,8 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <!-- Custome CSS -->
-    <link rel="stylesheet" href="./assets/css/style.css">
     <!-- Goolge Font -->
     <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
    <!-- Bootsrap Javascript -->
@@ -16,11 +14,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <!-- Custom Javascript for this game-->
     <script type="text/javascript" src="./assets/javascript/game.js" defer></script>
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Document</title>
 </head>
-<body class="bg-dark">
+<body background="./assets/images/background.jpg">
     <h1 class="display-2 text-center text-danger font-weight-bolder">Hangman Game</h1>
-    <h3 class="text-center pt-4 mt-5 text-white">SINGERS ARE MUSICIANS TOO</h3>
+    <h3 class="text-center pt-4 mt-5 text-white heading1">SINGERS ARE MUSICIANS TOO</h3>
     <h5 id="win-message">CONGRATULATIONS YOU WIN !</br>Press any key to play agian! </h5>
     <h5 id="loss-message">SORRY YOU LOOSE </br>Press any key to play again! </h5>
     <div class=" container text-center text-white p-5">
@@ -29,7 +29,7 @@
             <img id="hangmanImage" src=""  class="img-fluid pt-2" alt="" />
             
            </div>
-           <div class="col border border-succes p-2">
+           <div class="col border p-2">
                 <h5 class="p-2 bg-success">PRESS ANY KEY TO START</h5> 
                 <h6 class= "bg-info"> WINS</h6>
                 <h6 id="wins-text"> </h6>
@@ -39,7 +39,7 @@
                 <h6 id="underscore-text"></h6>
                 <h6 class="bg-warning">NUMBER OF GUESSES REMAINING</h6>
                 <h6 id="remainingGuesses-text"></h6>
-                <h6> LETTER ALREADY GUESSED</h6>
+                <h6 class="bg-danger"> LETTER ALREADY GUESSED</h6>
                 <h6 id="letterGuessed-text"></h6>
 
            </div>

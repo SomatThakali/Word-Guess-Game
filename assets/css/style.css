@@ -1,5 +1,6 @@
 h1, h3, h5, h6{
     font-family: 'Inconsolata', monospace;
+    font-weight: 600;
 }
 
 
@@ -24,4 +25,11 @@ h1, h3, h5, h6{
 
 #letterGuessed-text{
     color: red;
+    font-weight: 800;
 }
+
+.heading1{
+    font-family: 'Apple Chancery', cursive;
+    
+}
+
