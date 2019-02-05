@@ -18,8 +18,8 @@ var hasFinished = true;
 
 var wrongLetter = new Audio('assets/sounds/error.mp3');  /* This audio will play if the user enters wrong letter */
 var rightLetter = new Audio('assets/sounds/right.mp3');  /* This audio will play if the user enters right letter */
-var winner = new Audio('assets/sounds/win.mp3')
-var looser = new Audio('assets/sounds/looser.wav')
+var winner = new Audio('assets/sounds/win.mp3') /* This will play when the player wins */
+var looser = new Audio('assets/sounds/looser.wav') /* This will play when the player loose */
 
 /* ......................................... Start Game  Function..........................................................*/
 function startGame(){
