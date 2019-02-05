@@ -1,4 +1,8 @@
-h1, h3, h5, h6{
+
+h1{
+font-family:'Luminari';
+}
+h3, h5, h6{
     font-family: 'Inconsolata', monospace;
     font-weight: 600;
 }
@@ -19,6 +23,7 @@ h1, h3, h5, h6{
     font-size: 40px;
 }
 
+
 #hangmanImage{
     padding-top: 20px;
 }
@@ -26,6 +31,7 @@ h1, h3, h5, h6{
 #letterGuessed-text{
     color: red;
     font-weight: 800;
+
 }
 
 .heading1{
@@ -36,4 +42,10 @@ h1, h3, h5, h6{
 .box1{
 border-style: dashed;
 border-width: 5px;
+background-color:	#2F4F4F;
+}
+
+#underscore-text, #loss-text, #wins-text, #remainingGuesses-text{
+    color:white;;
+    font-weight: bold;
 }
