@@ -3,7 +3,14 @@ var words =   // Library or an array of singer names
 [
     "rihana",
     "drake",
-    "adam"
+    "adam",
+    "justin",
+    "usher",
+    "beyonce",
+    "eminem",
+    "ariana",
+    "taylor",
+    "adele"
 ];
 
 var win = 0;
