@@ -33,3 +33,7 @@ h1, h3, h5, h6{
     
 }
 
+.box1{
+border-style: dashed;
+border-width: 5px;
+}
