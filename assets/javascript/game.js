@@ -8,8 +8,8 @@ var words =   // Library or an array of singer names
 
 var win = 0;
 var loss = 0;
-const maxTries = 8;         /* This is the maximum number of tries */
-var guessesLeft = 8;
+const maxTries = 7;         /* This is the maximum number of tries */
+var guessesLeft = 7;
 var underScoreArray = [];   /* Will store the under scores */
 var userGuesses = [];       /* Will store the user Guesses */
 var wrongGuesses = [];      /* Will store the wrong Guesses */
@@ -27,7 +27,7 @@ function startGame(){
 /*....................................................RESET................................................................*/
      
     underScoreArray = [];
-    guessesLeft = 8;
+    guessesLeft = 7;
     wrongGuesses = [];
 
     document.getElementById('remainingGuesses-text').innerHTML = guessesLeft;
@@ -109,8 +109,6 @@ function checkWinLoss(){
         winner.play();
         hasFinished = true;
         document.getElementById("win-message").style.cssText= "display: block";
-        
-
     }
     else if (guessesLeft==0){
         loss++; 
