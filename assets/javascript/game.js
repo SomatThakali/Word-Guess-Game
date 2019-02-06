@@ -30,8 +30,6 @@ var looser = new Audio('assets/sounds/looser.wav') /* This will play when the pl
 
 /* ......................................... Start Game  Function..........................................................*/
 function startGame(){
-
-/*....................................................RESET................................................................*/
      
     underScoreArray = [];
     guessesLeft = 7;
@@ -55,7 +53,6 @@ function startGame(){
 }
 
 
-/*....................................................RESET................................................................*/
 function display(){
    
        // will display only if the player wins ot loose the game. Other time it will not display
@@ -109,15 +106,15 @@ function  checkGuesses(){
 /* .......................... Check win or loss ..........................*/
 function checkWinLoss(){
     
-    if(underScoreArray.indexOf("_") === -1){
+    if(underScoreArray.indexOf("_") === -1){ // if there is no more underscore 
         win++;
         document.getElementById('wins-text').innerHTML = win;
         console.log('DEBUFG wins ==  ' + win);
-        winner.play();
-        hasFinished = true;
+        winner.play(); // will play the winnig audio
+        hasFinished = true; // it will restart the game
         document.getElementById("win-message").style.cssText= "display: block";
     }
-    else if (guessesLeft==0){
+    else if (guessesLeft==0){ // if the number of guesses is zero
         loss++; 
         console.log('DEBUG loss == ' + loss);
         document.getElementById('loss-text').innerHTML = loss;
@@ -139,10 +136,11 @@ function checkWinLoss(){
 
 
 document.onkeyup = function(event){
-    if(hasFinished) {
+    if(hasFinished) { // if the game finish is true then it will restart the game 
         startGame();
-        hasFinished = false;
-    } else {
+        hasFinished = false; 
+    } else // if the game has not finished then the user is allowed to enter and guess the word
+    {
     if(event.keyCode >= 65 && event.keyCode <= 90) {  
         
             userGuesses = event.key.toLowerCase(); 
